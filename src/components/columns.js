@@ -12,6 +12,14 @@ export default () => [
     accessor: "age",
   },
   {
+    Header: "Email",
+    accessor: "email",
+  },
+  {
+    Header: "Phone Number",
+    accessor: "phone",
+  },
+  {
     Header: "Gender",
     accessor: "gender",
   },

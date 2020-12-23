@@ -4,7 +4,7 @@ import Table from "./components/table";
 import "./App.css";
 
 function App() {
-  const initialUsers = JSON.parse(localStorage.getItem('users'))
+  const initialUsers = JSON.parse(localStorage.getItem('users')) || []
   
   const [users,setUser] = useState(initialUsers)
   return (

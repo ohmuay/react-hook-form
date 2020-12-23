@@ -1,5 +1,6 @@
 import React from "react";
 import { appendErrors, useForm } from "react-hook-form";
+import validator from 'validator'
 
 const Form = (props) => {
   const { register, handleSubmit,errors } = useForm();
@@ -29,18 +30,29 @@ const Form = (props) => {
             type="text"
             ref={register({ required: true })}
           />
-          {errors.firstName && <p>First name is required!</p>}
+          {errors.firstName && <p className="error-msg">First name is required!</p>}
         </div>
         <div className="row">
           <label htmlFor="lastName">last name : </label>
           <input type="text" name="lastName" id="lastName" ref={register({required:true})} />
-          {errors.lastName && <p>Last name is required!</p>}
+          {errors.lastName && <p className="error-msg">Last name is required!</p>}
+        </div>
+        <div className="row">
+          <label htmlFor="email">Email : </label>
+          <input type="text" name="email" id="email" ref={register({required:true,validate:validator.isEmail})} />
+          {errors.email && errors.email.type === "required" && <p className="error-msg">Email is required!</p>}
+          {errors.email && errors.email.type !== "required" && <p className="error-msg">please input valid email</p>}
+        </div>
+        <div className="row">
+          <label htmlFor="phone">Phone Number : </label>
+          <input type="text" name="phone" id="phone" ref={register({required:true})} />
+          {errors.phone && <p className="error-msg">Phone Number is required!</p>}
         </div>
         <div className="row">
           <label htmlFor="age">age : </label>
           <input type="number" name="age" id="age" ref={register({required:true,validate:validateAge})} />
-          {errors.age && errors.age.type === "required" && <p>Age is required!</p>}
-          {errors.age && errors.age.type !== "required" && <p>Age must be between 1-150</p>}
+          {errors.age && errors.age.type === "required" && <p className="error-msg">Age is required!</p>}
+          {errors.age && errors.age.type !== "required" && <p className="error-msg">Age must be between 1-150</p>}
         </div>
         <div className="row">
           <label htmlFor="gender">Gender : </label>
