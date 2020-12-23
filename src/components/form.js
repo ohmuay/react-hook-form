@@ -5,7 +5,9 @@ const Form = (props) => {
   const { register, handleSubmit,errors } = useForm();
   const onSubmit = (data) => {
     const users = props.users;
-    props.setUser([...users, data]);
+    const addedUsers = [...users, data]
+    props.setUser(addedUsers);
+    localStorage.setItem('users',JSON.stringify(addedUsers))
   };
   const validateAge = (age)=>{
     if(age<=0){
